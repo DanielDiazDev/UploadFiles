@@ -1,0 +1,12 @@
+C:\Users\User\Desktop\Practica C#\UploadFilesProject\UploadFilesProject.Models\bin\Debug\net6.0\UploadFilesProject.Models.deps.json
+C:\Users\User\Desktop\Practica C#\UploadFilesProject\UploadFilesProject.Models\bin\Debug\net6.0\UploadFilesProject.Models.dll
+C:\Users\User\Desktop\Practica C#\UploadFilesProject\UploadFilesProject.Models\bin\Debug\net6.0\UploadFilesProject.Models.pdb
+C:\Users\User\Desktop\Practica C#\UploadFilesProject\UploadFilesProject.Models\obj\Debug\net6.0\UploadFilesProject.Models.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Practica C#\UploadFilesProject\UploadFilesProject.Models\obj\Debug\net6.0\UploadFilesProject.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\Practica C#\UploadFilesProject\UploadFilesProject.Models\obj\Debug\net6.0\UploadFilesProject.Models.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\Practica C#\UploadFilesProject\UploadFilesProject.Models\obj\Debug\net6.0\UploadFilesProject.Models.AssemblyInfo.cs
+C:\Users\User\Desktop\Practica C#\UploadFilesProject\UploadFilesProject.Models\obj\Debug\net6.0\UploadFilesProject.Models.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Practica C#\UploadFilesProject\UploadFilesProject.Models\obj\Debug\net6.0\UploadFilesProject.Models.dll
+C:\Users\User\Desktop\Practica C#\UploadFilesProject\UploadFilesProject.Models\obj\Debug\net6.0\refint\UploadFilesProject.Models.dll
+C:\Users\User\Desktop\Practica C#\UploadFilesProject\UploadFilesProject.Models\obj\Debug\net6.0\UploadFilesProject.Models.pdb
+C:\Users\User\Desktop\Practica C#\UploadFilesProject\UploadFilesProject.Models\obj\Debug\net6.0\ref\UploadFilesProject.Models.dll
