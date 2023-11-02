@@ -16,8 +16,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddScoped<SignInManager<AppUser>>();
 builder.Services.AddAutoMapper(typeof(ProfileMapper));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IFileRepository, FileRepository>();
+//builder.Services.AddTransient(s => s.GetService<HttpContext>().User);
 
 var app = builder.Build();
 
@@ -33,11 +36,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}");
+    pattern: "{controller=Account}/{action=Index}/{id?}");
 
 app.Run();

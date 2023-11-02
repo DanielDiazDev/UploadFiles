@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UploadFilesProject.Data\UploadFilesProject.Data.csproj" />
     <ProjectReference Include="..\UploadFilesProject.Models\UploadFilesProject.Models.csproj" />
     <ProjectReference Include="..\UploadFilesProject.Utils\UploadFilesProject.Utils.csproj" />
   </ItemGroup>

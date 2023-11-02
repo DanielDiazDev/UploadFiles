@@ -1,1 +1,51 @@
-﻿<h1>Usuario Cargado</h1>
+﻿
+<h2>Registro e Inicio de Sesión</h2>
+<form id="registerForm" style="display: block;" method="post" >
+
+    <div class="form-group">
+        <label for="Name">Nombre</label>
+        <input type="text" id="txtName" name="Name" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="LastName">Apellido</label>
+        <input type="text" id="txtLastName" name="LastName" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="UserName">Nombre de Usuario</label>
+        <input type="text" id="txtUserName" name="UserName" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Correo Electrónico</label>
+        <input type="text" id="txtEmail" name="Email" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="PasswordHash">Contraseña</label>
+        <input type="password" id="txtPassword" name="PasswordHash" class="form-control">
+    </div>
+    <input type="button" class="btn btn-primary" value="Registrarse"  id="register" />
+</form>
+
+
+
+
+<form id="loginForm" style="display: none;" method="post">
+    <div class="form-group">
+        <label for="UserName">Nombre de Usuario</label>
+        <input type="text" id="username" name="UserName" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="Password">Contraseña</label>
+        <input type="password" id="password" name="Password" class="form-control">
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Iniciar Sesion" id="login" />
+</form>
+
+<input type="submit" class="btn btn-primary" value="Cambiar" id="toggle" />
+
+<script src="~/js/account.js" type="text/javascript"></script>

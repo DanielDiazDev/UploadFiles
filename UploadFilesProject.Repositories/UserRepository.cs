@@ -9,10 +9,12 @@ namespace UploadFilesProject.Repositories
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public UserRepository(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
+        public UserRepository(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
             _roleManager = roleManager;
         }
 
@@ -24,9 +26,13 @@ namespace UploadFilesProject.Repositories
         public async Task<AppUser> Login(string userName, string password)
         {
             var user = await _userManager.FindByNameAsync(userName);
-            if(user !=  null && await _userManager.CheckPasswordAsync(user, password))
+            if (user != null)
             {
-                return user;
+                var result = await _signInManager.PasswordSignInAsync(user, password, isPersistent: false, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    return user;
+                }
             }
 
             return null;

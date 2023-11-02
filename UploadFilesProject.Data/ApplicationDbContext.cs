@@ -18,5 +18,6 @@ namespace UploadFilesProject.Data
         }
 
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<UserFile> UserFiles { get; set; }
     }
 }
