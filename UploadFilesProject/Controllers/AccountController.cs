@@ -24,26 +24,18 @@ namespace UploadFilesProject.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<JsonResult> Register([FromBody]RegisterViewModel registerViewModel)
+        public async Task<JsonResult> Register([FromBody] RegisterViewModel registerViewModel)
         {
-            var response = new ResponseBase(); //Crear ResponseBase
+            var response = new ResponseBase();
+
             try
             {
-                if (ModelState.IsValid)
+                var result = await _userRepository.Register(registerViewModel.Name, registerViewModel.LastName, registerViewModel.UserName, registerViewModel.Email, registerViewModel.PasswordHash);
+
+                if (result != null)
                 {
                     response.Message = "Usuario guardado correctamente";
-                    var result = await _userRepository.Register(registerViewModel.Name, registerViewModel.LastName, registerViewModel.UserName, registerViewModel.Email, registerViewModel.PasswordHash);
-                    if (result != null)
-                    {
-                        //return RedirectToAction("Index", "File"); Buscar como redireccionar con json
-                    }
-                    else
-                    {
-                         ModelState.AddModelError(string.Empty, "Error en el registro.");
-                          //  return View(registerViewModel);
-
-                    }
+                    response.Ok = true;
                 }
             }
             catch (Exception ex)
@@ -53,54 +45,34 @@ namespace UploadFilesProject.Controllers
             }
             return Json(response);
         }
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
 
-        //        var result = await _userRepository.Register(registerViewModel.Name, registerViewModel.LastName, registerViewModel.UserName, registerViewModel.Email, registerViewModel.PasswordHash);
-        //        if (result != null)
-        //        {
-        //            return RedirectToAction("Index","File"); //Para probar si el usuario se esta registrando
 
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError(string.Empty, "Error en el registro.");
-        //            return View(registerViewModel);
-
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return View(registerViewModel);
-        //    }
-        //}
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginViewModel loginViewModel)
+        public async Task<JsonResult> Login([FromBody] LoginViewModel loginViewModel)
         {
-            if (ModelState.IsValid)
-            {
 
+
+            var response = new ResponseBase();
+
+            try
+            {
                 var result = await _userRepository.Login(loginViewModel.UserName, loginViewModel.PasswordHash);
+
                 if (result != null)
                 {
-                    return RedirectToAction("Index", "File"); // Redirige al usuario a la página principal después del inicio de sesión exitoso.
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Nombre de usuario o contraseña incorrectos.");
-                    return View(loginViewModel);
+                    response.Message = "Usuario cargado correctamente";
+                    response.Ok = true;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return View(loginViewModel);
+                response.Ok = false;
+                response.Message = ex.Message;
             }
+            return Json(response);
+
+
         }
     }
 

@@ -57,6 +57,7 @@ namespace UploadFilesProject.Repositories
                     await _roleManager.CreateAsync(new IdentityRole("User"));
                 }
                 await _userManager.AddToRoleAsync(user, "User");
+                await _signInManager.PasswordSignInAsync(user, password, isPersistent: false, lockoutOnFailure: false);
                 return user;
             }
             throw new InvalidOperationException("La operación ha fallado. Detalles de error: " + string.Join(", ", result.Errors.Select(e => e.Description)));

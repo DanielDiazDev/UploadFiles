@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UploadFilesProject.Models;
+using UploadFilesProject.Models.ViewModels;
+using UploadFilesProject.Repositories;
 using UploadFilesProject.Repositories.Interfaces;
 
 namespace UploadFilesProject.Controllers
@@ -31,43 +33,83 @@ namespace UploadFilesProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(IFormFile file)
+        public async Task<JsonResult> UploadFile([FromBody] IFormFile file)
         {
-            if (file != null)
+            var response = new ResponseBase();
+
+            try
             {
-                // Realiza la lógica para obtener los componentes necesarios del archivo, como el ID, nombre de archivo, tipo de contenido y datos.
-                int id = 0; // Establece el ID adecuado.
-                string filename = file.FileName;
-                string contentType = file.ContentType;
-
-                using (var memoryStream = new MemoryStream())
+                if (file != null)
                 {
-                    await file.CopyToAsync(memoryStream);
-                    byte[] data = memoryStream.ToArray();
+                    int id = 0; 
+                    string filename = file.FileName;
+                    string contentType = file.ContentType;
 
-                    // Obtiene el usuario actual
-                    var currentUser = await _userManager.GetUserAsync(User);
-
-                    if (currentUser != null)
+                    using (var memoryStream = new MemoryStream())
                     {
-                        string userId = currentUser.Id; // Obtiene el ID del usuario.
+                        await file.CopyToAsync(memoryStream);
+                        byte[] data = memoryStream.ToArray();
 
-                        // Llama al método AddFile en el repositorio para guardar el archivo en la base de datos.
-                        await _fileRepository.AddFile(id, filename, contentType, data, userId);
-                        return RedirectToAction("Index"); // Redirige a una página de éxito o donde desees.
-                    }
-                    else
-                    {
-                        // Maneja el caso en el que el usuario actual no se pudo obtener.
-                        return RedirectToAction("Error"); // Redirige a una página de error o donde desees.
+                        var currentUser = await _userManager.GetUserAsync(User);
+
+                        if (currentUser != null)
+                        {
+                            string userId = currentUser.Id; 
+
+                            await _fileRepository.AddFile(id, filename, contentType, data, userId);
+                            response.Message = "Archivo guardado correctamente";
+                            response.Ok = true;
+                        }
                     }
                 }
             }
-
-            // Maneja el caso en el que no se seleccionó un archivo.
-            ModelState.AddModelError("file", "Please select a file.");
-            return View();
+            catch (Exception ex)
+            {
+                response.Ok = false;
+                response.Message = ex.Message;
+            }
+            return Json(response);
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Index(IFormFile file)
+        //{
+        //    if (file != null)
+        //    {
+        //        // Realiza la lógica para obtener los componentes necesarios del archivo, como el ID, nombre de archivo, tipo de contenido y datos.
+        //        int id = 0; // Establece el ID adecuado.
+        //        string filename = file.FileName;
+        //        string contentType = file.ContentType;
+
+        //        using (var memoryStream = new MemoryStream())
+        //        {
+        //            await file.CopyToAsync(memoryStream);
+        //            byte[] data = memoryStream.ToArray();
+
+        //            // Obtiene el usuario actual
+        //            var currentUser = await _userManager.GetUserAsync(User);
+
+        //            if (currentUser != null)
+        //            {
+        //                string userId = currentUser.Id; // Obtiene el ID del usuario.
+
+        //                // Llama al método AddFile en el repositorio para guardar el archivo en la base de datos.
+        //                await _fileRepository.AddFile(id, filename, contentType, data, userId);
+        //                return RedirectToAction("Index"); // Redirige a una página de éxito o donde desees.
+        //            }
+        //            else
+        //            {
+        //                // Maneja el caso en el que el usuario actual no se pudo obtener.
+        //                return RedirectToAction("Error"); // Redirige a una página de error o donde desees.
+        //            }
+        //        }
+        //    }
+
+        //    // Maneja el caso en el que no se seleccionó un archivo.
+        //    ModelState.AddModelError("file", "Please select a file.");
+        //    return View();
+        //}
 
     }
 }

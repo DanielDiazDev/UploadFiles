@@ -11,6 +11,6 @@ namespace UploadFilesProject.Repositories.Interfaces
     {
         AppUser GetUser();
         Task<AppUser> Register(string name, string lastName, string userName, string email, string password);
-        Task<AppUser> Login(string email, string password);
+        Task<AppUser> Login(string usarName, string password);
     }
 }

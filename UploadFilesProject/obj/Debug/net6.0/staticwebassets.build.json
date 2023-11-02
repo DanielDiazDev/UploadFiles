@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dch9qKHiZWo5Cwe7l0h8TTo5qGyK9uNO813omAtjguY=",
+  "Hash": "8ZoUDbbADFxNxCUjXfGxeER4D2TSPV883urFmbkwlhc=",
   "Source": "UploadFilesProject",
   "BasePath": "_content/UploadFilesProject",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\account.js"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject\\wwwroot\\js\\file.js",
+      "SourceId": "UploadFilesProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject\\wwwroot\\",
+      "BasePath": "_content/UploadFilesProject",
+      "RelativePath": "js/file.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\file.js"
     },
     {
       "Identity": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject\\wwwroot\\js\\site.js",
