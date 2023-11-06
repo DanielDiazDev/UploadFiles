@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8ZoUDbbADFxNxCUjXfGxeER4D2TSPV883urFmbkwlhc=",
+  "Hash": "ZKQ1c1izHKK2tJ4pYoeeruExDaEIsh1BrJAJnaGOq+0=",
   "Source": "UploadFilesProject",
   "BasePath": "_content/UploadFilesProject",
   "Mode": "Default",
@@ -49,6 +49,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\UploadFilesProject.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject\\wwwroot\\css\\account.css",
+      "SourceId": "UploadFilesProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject\\wwwroot\\",
+      "BasePath": "_content/UploadFilesProject",
+      "RelativePath": "css/account.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\account.css"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject\\wwwroot\\css\\file.css",
+      "SourceId": "UploadFilesProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject\\wwwroot\\",
+      "BasePath": "_content/UploadFilesProject",
+      "RelativePath": "css/file.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\file.css"
     },
     {
       "Identity": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject\\wwwroot\\css\\site.css",

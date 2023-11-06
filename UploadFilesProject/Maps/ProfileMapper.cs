@@ -8,7 +8,7 @@ namespace UploadFilesProject.Maps
     {
         public ProfileMapper() 
         {
-            CreateMap<AppUser, RegisterViewModel>().ReverseMap();
+            CreateMap<UserFile, ModifiedFileViewModel>().ReverseMap();
         }
     }
 }

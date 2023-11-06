@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\UploadFilesProject.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject\\wwwroot\\css\\account.css",
+      "PackagePath": "staticwebassets\\css\\account.css"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject\\wwwroot\\css\\file.css",
+      "PackagePath": "staticwebassets\\css\\file.css"
+    },
+    {
       "Id": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

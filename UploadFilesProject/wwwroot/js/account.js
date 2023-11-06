@@ -27,14 +27,14 @@ function registerUser() {
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(user),
-        success: function (data) {
-            if (data.ok) {
-                alert(data.message);
+        success: function (result) {
+            if (result.ok) {
+                alert(result.message);
                 window.location = '/File/Index'
             } 
         },
-        error: function (data) {
-            alert('Error: ' + data.message);
+        error: function (result) {
+            alert('Error: ' + result.message);
         }
     });
 

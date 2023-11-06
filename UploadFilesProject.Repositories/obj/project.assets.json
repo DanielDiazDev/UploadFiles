@@ -1485,6 +1485,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.24"
         },
         "compile": {
@@ -1492,16 +1493,6 @@
         },
         "runtime": {
           "bin/placeholder/UploadFilesProject.Models.dll": {}
-        }
-      },
-      "UploadFilesProject.Utils/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/UploadFilesProject.Utils.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/UploadFilesProject.Utils.dll": {}
         }
       }
     }
@@ -3655,11 +3646,6 @@
       "type": "project",
       "path": "../UploadFilesProject.Models/UploadFilesProject.Models.csproj",
       "msbuildProject": "../UploadFilesProject.Models/UploadFilesProject.Models.csproj"
-    },
-    "UploadFilesProject.Utils/1.0.0": {
-      "type": "project",
-      "path": "../UploadFilesProject.Utils/UploadFilesProject.Utils.csproj",
-      "msbuildProject": "../UploadFilesProject.Utils/UploadFilesProject.Utils.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3667,8 +3653,7 @@
       "Microsoft.AspNetCore.Http.Features >= 5.0.17",
       "Microsoft.AspNetCore.Identity >= 2.2.0",
       "UploadFilesProject.Data >= 1.0.0",
-      "UploadFilesProject.Models >= 1.0.0",
-      "UploadFilesProject.Utils >= 1.0.0"
+      "UploadFilesProject.Models >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3703,9 +3688,6 @@
             },
             "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject.Models\\UploadFilesProject.Models.csproj": {
               "projectPath": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject.Models\\UploadFilesProject.Models.csproj"
-            },
-            "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject.Utils\\UploadFilesProject.Utils.csproj": {
-              "projectPath": "C:\\Users\\User\\Desktop\\Practica C#\\UploadFilesProject\\UploadFilesProject.Utils\\UploadFilesProject.Utils.csproj"
             }
           }
         }

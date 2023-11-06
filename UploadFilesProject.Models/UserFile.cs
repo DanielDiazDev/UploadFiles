@@ -9,8 +9,7 @@ namespace UploadFilesProject.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string FileName { get; set; }
-        public string ContentType { get; set; }
-        public byte[] Data { get; set; }
+        public byte[] FileData { get; set; }
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         public AppUser User { get; set; }

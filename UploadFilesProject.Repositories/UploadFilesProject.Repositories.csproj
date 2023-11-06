@@ -14,7 +14,6 @@
   <ItemGroup>
     <ProjectReference Include="..\UploadFilesProject.Data\UploadFilesProject.Data.csproj" />
     <ProjectReference Include="..\UploadFilesProject.Models\UploadFilesProject.Models.csproj" />
-    <ProjectReference Include="..\UploadFilesProject.Utils\UploadFilesProject.Utils.csproj" />
   </ItemGroup>
 
 </Project>

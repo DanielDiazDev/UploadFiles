@@ -17,14 +17,13 @@ namespace UploadFilesProject.Repositories
             _context = context;
             _userManager = userManager;
         }
-        public async Task AddFile(int id, string filename, string contentTipe, byte[] data, string userId)
+        public async Task AddFile(int id, string fileName, byte[] FileData, string userId)
         {
             var userFile = new UserFile()
             {
                 Id = id,
-                FileName = filename,
-                ContentType = contentTipe,
-                Data = data,
+                FileName = fileName,
+                FileData = FileData,
                 UserId = userId
             };
         
@@ -36,9 +35,18 @@ namespace UploadFilesProject.Repositories
         }
         
 
-        public Task DeleteFile(int id)
+        public async Task DeleteFile(int id)
         {
-            throw new NotImplementedException();
+            var file = _context.UserFiles.Find(id); 
+            if (file != null)
+            {
+                _context.UserFiles.Remove(file);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new InvalidOperationException("El elemento con el ID especificado no existe en la base de datos.");
+            }
         }
 
         public Task<UserFile> GetFile(int id)
@@ -46,14 +54,23 @@ namespace UploadFilesProject.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<UserFile> GetFiles()
+        public IEnumerable<UserFile> GetFiles(string userId)
         {
-            throw new NotImplementedException();
+            return _context.UserFiles.Where(uf => uf.UserId == userId);
         }
 
-        public Task UpdateFile(UserFile oUserFile)
+        public async Task UpdateFile(UserFile oUserFile)
         {
-            throw new NotImplementedException();
+            var file = _context.UserFiles.FirstOrDefault(uf=>uf.Id == oUserFile.Id);
+            if(file != null)
+            {
+                file.FileName = oUserFile.FileName;
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new InvalidOperationException("El elemento con el ID especificado no existe en la base de datos.");
+            }
         }
     }
 }

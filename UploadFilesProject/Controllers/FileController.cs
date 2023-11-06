@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UploadFilesProject.Models;
@@ -13,11 +15,12 @@ namespace UploadFilesProject.Controllers
     {
         private readonly IFileRepository _fileRepository;
         private readonly UserManager<AppUser> _userManager;
-
-        public FileController(IFileRepository fileRepository, UserManager<AppUser> userManager)
+        private readonly IMapper _mapper;
+        public FileController(IFileRepository fileRepository, UserManager<AppUser> userManager, IMapper mapper)
         {
             _fileRepository = fileRepository;
             _userManager = userManager;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -32,36 +35,27 @@ namespace UploadFilesProject.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<JsonResult> UploadFile([FromBody] IFormFile file)
+        public async Task<JsonResult> UploadFile([FromForm]UploadViewModel uploadViewModel) //MEJORAR Y AGREGAR LOS DEMAS METODOS
         {
             var response = new ResponseBase();
-
+            var file = uploadViewModel.FormFile;
             try
             {
-                if (file != null)
+                if (file != null && file.Length > 0)
                 {
-                    int id = 0; 
-                    string filename = file.FileName;
-                    string contentType = file.ContentType;
-
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        await file.CopyToAsync(memoryStream);
-                        byte[] data = memoryStream.ToArray();
-
-                        var currentUser = await _userManager.GetUserAsync(User);
-
-                        if (currentUser != null)
-                        {
-                            string userId = currentUser.Id; 
-
-                            await _fileRepository.AddFile(id, filename, contentType, data, userId);
-                            response.Message = "Archivo guardado correctamente";
-                            response.Ok = true;
-                        }
-                    }
+                    int id = 0;
+                    using var stream = new MemoryStream();
+                    await file.CopyToAsync(stream);
+                    var fileData = stream.ToArray();
+                    var fileName = file.FileName;
+                    var currentUser = await _userManager.GetUserAsync(User);
+                    string userId = currentUser.Id;
+                    response.Message = "Archivo guardado correctamente";
+                    response.Ok = true;
+                    await _fileRepository.AddFile(id, fileName, fileData, userId);
                 }
+
+                
             }
             catch (Exception ex)
             {
@@ -70,46 +64,50 @@ namespace UploadFilesProject.Controllers
             }
             return Json(response);
         }
+        [HttpGet]
+        public async Task<JsonResult> GetFiles()
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            string userId = currentUser.Id;
+            var listOfFiles = _fileRepository.GetFiles(userId).ToList();
+            return Json(listOfFiles);
+        }
+        [HttpDelete]
+        public async Task<JsonResult> DeleteFile([FromBody]DeleteFileViewModel deleteFileViewModel)
+        {
+            var response = new ResponseBase();
+            try
+            {
+                response.Message = "Archivo eliminado correctamente";
+                response.Ok = true;
+                await _fileRepository.DeleteFile(deleteFileViewModel.Id);
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Index(IFormFile file)
-        //{
-        //    if (file != null)
-        //    {
-        //        // Realiza la lógica para obtener los componentes necesarios del archivo, como el ID, nombre de archivo, tipo de contenido y datos.
-        //        int id = 0; // Establece el ID adecuado.
-        //        string filename = file.FileName;
-        //        string contentType = file.ContentType;
+            }
+            catch (Exception ex)
+            {
+                response.Ok = false;
+                response.Message = ex.Message;
+            }
+            return Json(response);
+        }
+        [HttpPut]
+        public async Task<JsonResult> ModifiedFile([FromBody] ModifiedFileViewModel modifiedFileViewModel)
+        {
+            var response = new ResponseBase();
+            try
+            {
+                var file = _mapper.Map<UserFile>(modifiedFileViewModel);
+                response.Message = "Archivo modificado correctamente";
+                response.Ok = true;
+                await _fileRepository.UpdateFile(file);
 
-        //        using (var memoryStream = new MemoryStream())
-        //        {
-        //            await file.CopyToAsync(memoryStream);
-        //            byte[] data = memoryStream.ToArray();
-
-        //            // Obtiene el usuario actual
-        //            var currentUser = await _userManager.GetUserAsync(User);
-
-        //            if (currentUser != null)
-        //            {
-        //                string userId = currentUser.Id; // Obtiene el ID del usuario.
-
-        //                // Llama al método AddFile en el repositorio para guardar el archivo en la base de datos.
-        //                await _fileRepository.AddFile(id, filename, contentType, data, userId);
-        //                return RedirectToAction("Index"); // Redirige a una página de éxito o donde desees.
-        //            }
-        //            else
-        //            {
-        //                // Maneja el caso en el que el usuario actual no se pudo obtener.
-        //                return RedirectToAction("Error"); // Redirige a una página de error o donde desees.
-        //            }
-        //        }
-        //    }
-
-        //    // Maneja el caso en el que no se seleccionó un archivo.
-        //    ModelState.AddModelError("file", "Please select a file.");
-        //    return View();
-        //}
-
+            }
+            catch (Exception ex)
+            {
+                response.Ok = false;
+                response.Message = ex.Message;
+            }
+            return Json(response);
+        }
     }
 }

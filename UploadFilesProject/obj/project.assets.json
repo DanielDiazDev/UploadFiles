@@ -1599,6 +1599,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.24"
         },
         "compile": {
@@ -1615,24 +1616,13 @@
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "UploadFilesProject.Data": "1.0.0",
-          "UploadFilesProject.Models": "1.0.0",
-          "UploadFilesProject.Utils": "1.0.0"
+          "UploadFilesProject.Models": "1.0.0"
         },
         "compile": {
           "bin/placeholder/UploadFilesProject.Repositories.dll": {}
         },
         "runtime": {
           "bin/placeholder/UploadFilesProject.Repositories.dll": {}
-        }
-      },
-      "UploadFilesProject.Utils/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/UploadFilesProject.Utils.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/UploadFilesProject.Utils.dll": {}
         }
       }
     }
@@ -3969,11 +3959,6 @@
       "type": "project",
       "path": "../UploadFilesProject.Repositories/UploadFilesProject.Repositories.csproj",
       "msbuildProject": "../UploadFilesProject.Repositories/UploadFilesProject.Repositories.csproj"
-    },
-    "UploadFilesProject.Utils/1.0.0": {
-      "type": "project",
-      "path": "../UploadFilesProject.Utils/UploadFilesProject.Utils.csproj",
-      "msbuildProject": "../UploadFilesProject.Utils/UploadFilesProject.Utils.csproj"
     }
   },
   "projectFileDependencyGroups": {
